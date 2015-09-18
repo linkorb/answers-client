@@ -1,0 +1,14 @@
+{
+    "name": "linkorb/answers-client",
+    "description": "Answers Client for Answers Application",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Kishan Thobhani",
+            "email": "thobhanikishan@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {}
+}
