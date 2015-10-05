@@ -2,6 +2,7 @@
     "name": "linkorb/answers-client",
     "description": "Answers Client for Answers Application",
     "homepage": "https://github.com/linkorb/answers-client",
+    "keywords": ["answers", "client-library", "php", "linkorb"],
     "type": "library",
     "license": "MIT",
     "authors": [{
