@@ -13,6 +13,14 @@
     "require": {
         "guzzlehttp/guzzle": "~6.0"
     },
+    "require-dev": {
+        "linkorb/conventions-checker": "^1.1"
+    },
+    "extra": {
+        "grumphp": {
+            "config-default-path": "vendor/linkorb/conventions-checker/config/lib/grumphp.yml"
+        }
+    },
     "autoload": {
         "psr-4": {
             "TicketBox\\Client\\": "src/"
