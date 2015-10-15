@@ -1,12 +1,12 @@
 <?php 
 
-namespace Answers\Client;
-
+namespace Linkorb\AnswersClient;
+ 
 use GuzzleHttp\Client as GuzzleClient;
 
 class Client {
 
-	private $apiUrl;
+    private $apiUrl;
     private $username;
     private $password;
  
@@ -17,13 +17,12 @@ class Client {
         $this->apiUrl = $apiUrl;
     }
 
+    public function getUsername() {
+        return $this->username; 
+    }
+
     public function get() {
-    	return new GuzzleClient([
-    		'base_url' => [ $this->apiUrl  ],
-		    'defaults' => [
-		        'auth'    => [ $this->username ,  $this->password ],
-		    ]
-		]);
+        return  new GuzzleClient( ['base_uri' => $this->apiUrl, 'auth' => [$this->username,$this->password] ] );
     }
 
 }

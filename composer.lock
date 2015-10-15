@@ -4,7 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "aa1b286c324c3dafb622dc7a32cbd52e",
+    "hash": "c79402c768f152d5c3bdfab27c307a7d",
+    "content-hash": "2b30cf2286e771c4bffb645c6a1e5083",
     "packages": [
         {
             "name": "guzzlehttp/guzzle",
@@ -12,12 +13,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/guzzle/guzzle.git",
-                "reference": "768b4c0e3e0712a53eb35eaf3ba0d96910225389"
+                "reference": "90d7d39a97295a932ce597f12d6b65da7be8bad3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/guzzle/guzzle/zipball/768b4c0e3e0712a53eb35eaf3ba0d96910225389",
-                "reference": "768b4c0e3e0712a53eb35eaf3ba0d96910225389",
+                "url": "https://api.github.com/repos/guzzle/guzzle/zipball/90d7d39a97295a932ce597f12d6b65da7be8bad3",
+                "reference": "90d7d39a97295a932ce597f12d6b65da7be8bad3",
                 "shasum": ""
             },
             "require": {
@@ -66,7 +67,7 @@
                 "rest",
                 "web service"
             ],
-            "time": "2015-09-16 17:16:54"
+            "time": "2015-10-15 06:47:57"
         },
         {
             "name": "guzzlehttp/promises",
@@ -233,6 +234,8 @@
     "stability-flags": [],
     "prefer-stable": false,
     "prefer-lowest": false,
-    "platform": [],
+    "platform": {
+        "php": ">=5.3.0"
+    },
     "platform-dev": []
 }
