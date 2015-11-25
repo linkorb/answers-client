@@ -13,13 +13,8 @@
         "email": "thobhanikishan@gmail.com"
     }],
     "require": {
-<<<<<<< HEAD
         "guzzlehttp/guzzle": "~6.0",
         "php": ">=5.3.0"
-=======
-        "php": ">=5.3.0",
-        "guzzlehttp/guzzle": "~6.0"
->>>>>>> 9b5c189c00dfee311a5a82c704618d83a0ce256f
     },
     "require-dev": {
         "linkorb/conventions-checker": "^1.1"
@@ -31,11 +26,7 @@
     },
     "autoload": {
         "psr-4": {
-<<<<<<< HEAD
             "Linkorb\\AnswersClient\\": "src/"
-=======
-            "Answers\\Client\\": "src/"
->>>>>>> 9b5c189c00dfee311a5a82c704618d83a0ce256f
         }
     }
 }

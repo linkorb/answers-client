@@ -4,18 +4,19 @@ namespace Linkorb\AnswersClient;
 use Linkorb\AnswersClient\Client as Client;
 
 
-class Question {
+class Answer
+{
 
-	const PATH = 'questions/';
-    
-    private $id;
+	const PATH = 'answers/';
 
-    private $client;
+	private $client;
 
     public function __construct(Client $client)
     {
         $this->client = $client;
     }
+
+    private $id;
 
     public function getId()
     {
@@ -29,44 +30,30 @@ class Question {
         return $this;
     }
 
-    private $topic_id;
+    private $question_id;
 
-    public function getTopicId()
+    public function getQuestionId()
     {
-        return $this->topic_id;
+        return $this->question_id;
     }
 
-    public function setTopicId($topic_id)
+    public function setQuestionId($question_id)
     {
-        $this->topic_id = $topic_id;
+        $this->question_id = $question_id;
 
         return $this;
     }
 
-    private $question;
+    private $answer;
 
-    public function getQuestion()
+    public function getAnswer()
     {
-        return $this->question;
+        return $this->answer;
     }
 
-    public function setQuestion($question)
+    public function setAnswer($answer)
     {
-        $this->question = $question;
-
-        return $this;
-    }
-
-    private $description;
-
-    public function getDescription()
-    {
-        return $this->description;
-    }
-
-    public function setDescription($description)
-    {
-        $this->description = $description;
+        $this->answer = $answer;
 
         return $this;
     }
@@ -127,20 +114,6 @@ class Question {
         return $this;
     }
 
-    private $error;
-
-    public function getError()
-    {
-        return $this->error;
-    }
-
-    public function setError($error)
-    {
-        $this->error = $error;
-
-        return $this;
-    }
-
     public function get( $id )
     {
 
@@ -154,20 +127,6 @@ class Question {
             }
         }
 
-    }
-
-
-    public function getAnswers()
-    {
-        try {
-            $response  = $this->client->get()->request('GET', self::PATH  . $this->getId() . '/answers');
-            return json_decode($response->getBody(), true);
-        } catch (RequestException $e) {
-            echo $e->getRequest() . "\n";
-            if ($e->hasResponse()) {
-                echo $e->getResponse() . "\n";
-            }
-        }
     }
 
     public function getComments()
@@ -198,10 +157,10 @@ class Question {
 
 
     public function create() {
+
         $data = [
-            'question' => $this->getQuestion(),
-            'description' => $this->getDescription(),
-            'topic_id' => $this->getTopicId(),
+            'answer' => $this->getAnswer(),
+            'question_id' => $this->getQuestionId(),
             'username' => $this->client->getUsername()
         ];
 
@@ -210,7 +169,6 @@ class Question {
 	    ] );
 
         $jsonDecode = json_decode( $response->getBody(), true );
-
         if ( isset ( $jsonDecode['error'] ) ) {
              throw new \Exception( $jsonDecode['error']['message'] );
         } else {
@@ -219,21 +177,20 @@ class Question {
 		
     }
 
-
     public function update() {
         
-         $data = [
-            'question' => $this->getQuestion(),
-            'description' => $this->getDescription(),
-            'id' => $this->getId()
+        $data = [
+            'answer' => $this->getAnswer(),
+            'id' => $this->getId(),
+            'username' => $this->client->getUsername()
         ];
-
 
         $response  = $this->client->get()->request('POST', self::PATH . 'update', [
             'body' => json_encode($data)
         ] );
 
         $jsonDecode = json_decode( $response->getBody(), true );
+
 
         if ( isset ( $jsonDecode['error'] ) ) {
              throw new \Exception( $jsonDecode['error']['message'] );
@@ -260,11 +217,12 @@ class Question {
         
     }
 
+
     public function comment( $comment ) {
         $data = [
             'comment' => $comment,
             'parent_id' => $this->getId(),
-            'parent_type' => 'question',
+            'parent_type' => 'answer',
             'username' => $this->client->getUsername()
         ];
 
@@ -283,11 +241,10 @@ class Question {
         
     }
 
-
     public function vote( ) {
         $data = [
             'parent_id' => $this->getId(),
-            'parent_type' => 'question',
+            'parent_type' => 'answer',
             'username' => $this->client->getUsername()
         ];
 
@@ -306,18 +263,15 @@ class Question {
         
     }
 
-    public function arrayToObject( $array ) {
-
-        $this->setId( isset ( $array['id'] ) ? $array['id'] : 'null' )
-            ->setQuestion( isset ( $array['question'] ) ? $array['question'] : 'null' )
-            ->setUsername( isset ( $array['username'] ) ? $array['username'] : 'null' )
-            ->setDescription( isset ( $array['description'] ) ? $array['description'] : 'null' )
-            ->setTopicId( isset ( $array['topic_id'] ) ? $array['topic_id'] : 'null' )
-            ->setCreatedAt( isset ( $array['created_at'] ) ? $array['created_at'] : 'null' )
-            ->setIsDeleted( isset ( $array['is_deleted'] ) ? $array['is_deleted'] : 'null' )
-            ->setUpdatedAt( isset ( $array['updated_at'] ) ? $array['updated_at'] : 'null' );
+    private function arrayToObject($array)
+    {
+        $this->setId( isset( $array['id'] ) ? $array['id'] : 'null' )
+            ->setAnswer( isset( $array['answer'] ) ? $array['answer'] : 'null' )
+            ->setUsername( isset( $array['username'] ) ? $array['username'] : 'null' )
+            ->setQuestionId( isset( $array['question_id'] ) ? $array['question_id'] : 'null' )
+            ->setCreatedAt( isset( $array['created_at'] ) ? $array['created_at'] : 'null' )
+            ->setIsDeleted( isset( $array['is_deleted'] ) ? $array['is_deleted'] : 'null' )
+            ->setUpdatedAt( isset( $array['updated_at'] ) ? $array['updated_at'] : 'null' ) ;
     }
 
 }
-
-?>
